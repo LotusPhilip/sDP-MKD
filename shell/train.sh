@@ -1,0 +1,40 @@
+torchrun --nproc_per_node 4 \
+	-m FlagEmbedding.finetune.embedder.encoder_only.m3 \
+	--model_name_or_path /mnt/llm_data/renyi/Model/bge-m3 \
+    --cache_dir ./cache/model \
+    --train_data ./data/data-v2/pmc_train_23576_bge_minedHN.jsonl \
+    --cache_path ./cache/data \
+    --output_dir ./checkpoints/bge-m3-v2 \
+    --deepspeed ./args/ds_z1_config.json \
+    --logging_dir ./logs/bge-v2 \
+    --report_to tensorboard \
+    --save_only_model \
+    --train_group_size 5 \
+    --query_max_len 512 \
+    --passage_max_len 512 \
+    --pad_to_multiple_of 8 \
+    --knowledge_distillation True \
+    --same_dataset_within_batch True \
+    --small_threshold 0 \
+    --drop_threshold 0 \
+    --learning_rate 2e-5 \
+    --lr_scheduler_type cosine \
+    --fp16 \
+    --num_train_epochs 20 \
+    --per_device_train_batch_size 8 \
+    --gradient_accumulation_steps 2 \
+    --dataloader_drop_last True \
+    --warmup_ratio 0.05 \
+    --gradient_checkpointing \
+    --logging_steps 1 \
+    --save_strategy epoch \
+    --negatives_cross_device \
+    --temperature 0.02 \
+    --sentence_pooling_method cls \
+    --normalize_embeddings True \
+    --kd_loss_type m3_kd_loss \
+    --unified_finetuning True \
+    --use_self_distill True \
+    --fix_encoder False \
+    --self_distill_start_step 100 \
+    --query_instruction_for_retrieval "What is the description of the primary diagnosis symptoms of the patient as described in the following account of the patient's medical treatment?" 
