@@ -1,4 +1,12 @@
+# Training and Testing data
+
+Training and testing data are available at .
+
+
+
+
 # Citation
+This model is constructed based on the framework of FlagEmbedding.
 
 ```
 @article{chen2024bge,
