@@ -1,6 +1,6 @@
 # Training and Testing data
 
-Training and testing data are available at .
+Training and testing data are available at https://modelscope.cn/datasets/LotusZZZ/PMC-Patients-DP/files.
 
 
 
